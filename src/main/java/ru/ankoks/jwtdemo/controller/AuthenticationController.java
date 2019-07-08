@@ -63,7 +63,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("sign-up")
-    public ResponseEntity signIn(@RequestBody UserDto userDto) {
+    public ResponseEntity signUp(@RequestBody UserDto userDto) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUserName(userDto.getUsername());
         userEntity.setFirstName(userDto.getFirstName());
