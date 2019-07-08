@@ -37,7 +37,7 @@ public class AuthenticationController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("sign-up")
+    @PostMapping("sign-in")
     public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto) {
 
         try {
@@ -62,7 +62,7 @@ public class AuthenticationController {
         }
     }
 
-    @PostMapping("sign-in")
+    @PostMapping("sign-up")
     public ResponseEntity signIn(@RequestBody UserDto userDto) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUserName(userDto.getUsername());
