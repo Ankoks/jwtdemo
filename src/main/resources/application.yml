@@ -1,0 +1,30 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/jwt_demo
+        username: postgres
+        password: postgres
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        database: POSTGRESQL
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                default_schema: public
+                format_sql: true
+                temp:
+                  use_jdbc_metadata_defaults: false
+    liquibase:
+      enabled: true
+      change-log: classpath:db/master.xml
+      url: jdbc:postgresql://localhost:5432/jwt_demo
+      user: postgres
+      password: postgres
+
+application:
+    jwt:
+        token:
+            secret: secretWord
+            expired: 3600000
