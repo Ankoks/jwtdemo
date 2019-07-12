@@ -18,3 +18,10 @@ curl -d '{"username":"test", "password":"test"}' -H "Content-Type: application/j
 ```
 http POST http://localhost:8080/api/v1/auth/sign-in username=test password=test
 ```
+
+# Run in docker
+```
+1. Run <mvn clean install> command
+2. Run <docker-compose build> from root
+3. Run <docker-compose up>
+```

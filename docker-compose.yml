@@ -1,0 +1,19 @@
+version: '3'
+services:
+    bd:
+        image: postgres:10.4
+        environment:
+            - POSTGRES_DB=jwt_demo
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - 5432:5432
+    back_jwt:
+        image: spring-boot-rest-docker-image
+        build:
+          context: ./
+          dockerfile: Dockerfile
+        ports:
+          - 8080:8080
+        depends_on:
+          - bd

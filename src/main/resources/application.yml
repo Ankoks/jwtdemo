@@ -1,6 +1,7 @@
 spring:
     datasource:
-        url: jdbc:postgresql://localhost:5432/jwt_demo
+#        url: jdbc:postgresql://localhost:5432/jwt_demo
+        url: jdbc:postgresql://bd:5432/jwt_demo
         username: postgres
         password: postgres
         driver-class-name: org.postgresql.Driver
@@ -19,7 +20,8 @@ spring:
     liquibase:
       enabled: true
       change-log: classpath:db/master.xml
-      url: jdbc:postgresql://localhost:5432/jwt_demo
+#      url: jdbc:postgresql://localhost:5432/jwt_demo
+      url: jdbc:postgresql://bd:5432/jwt_demo
       user: postgres
       password: postgres
 
