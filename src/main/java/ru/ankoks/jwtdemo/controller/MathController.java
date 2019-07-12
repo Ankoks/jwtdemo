@@ -1,10 +1,15 @@
 package ru.ankoks.jwtdemo.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * User: ankoks
@@ -15,13 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class MathController {
 
     @GetMapping(value = "{n}")
-    @PreAuthorize(value = "hasAuthority('ROLE_ADMIN')")
-    public int getSumm(@PathVariable("n") Integer n) {
+    @PreAuthorize(value = "hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
+    public String getSumm(@PathVariable("n") Integer n) {
         long before = System.nanoTime();
         int summ = arithmeticProgression(n);
         System.out.println("evaluate summ = " + (System.nanoTime() - before) + " ms");
 
-        return summ;
+        List<? extends GrantedAuthority> collect = SecurityContextHolder.getContext().getAuthentication().getAuthorities()
+                .stream()
+                .collect(Collectors.toList());
+
+        return String.format("summ is %s. Current user has roles {%s}", summ, collect);
     }
 
     private int arithmeticProgression(int n) {

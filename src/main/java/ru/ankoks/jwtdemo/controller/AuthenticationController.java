@@ -73,8 +73,6 @@ public class AuthenticationController {
 
         UserEntity user = userService.register(userEntity);
 
-        System.out.println(user);
-
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(user.getId());
     }
 }
